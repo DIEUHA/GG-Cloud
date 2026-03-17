@@ -16,10 +16,10 @@ try:
         database="contact_db"
     )
     cursor = conn.cursor()
-    cursor.execute("SELECT name, phone FROM contacts")
+    cursor.execute("SELECT name, phone, email FROM contacts")
     
-    for (name, phone) in cursor:
-        print(f"<li>{name} : {phone}</li>")
+    for (name, phone, email) in cursor:
+        print(f"<li>{name} : {phone} : {email or '-'}</li>")
         
     cursor.close()
     conn.close()

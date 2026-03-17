@@ -16,7 +16,7 @@ try:
     )
     # dictionary=True giúp lấy dữ liệu ra dạng {key: value} giống JSON luôn
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT name, phone as telephone FROM contacts")
+    cursor.execute("SELECT name, phone as telephone, email FROM contacts")
     
     rows = cursor.fetchall()
     
