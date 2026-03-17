@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"> <title>Contact List</title>
+    <title>Contact List</title>
+</head>
+<body>
+    <h1>Danh sách điện thoại (Lấy từ Python CGI)</h1>
+    <div id="display-area">Đang tải dữ liệu...</div>
+
+    <script>
+        // Đây chính là đoạn "truyền dữ liệu" mà đề bài nhắc tới
+        fetch('/cgi-bin/contacts-db.py')
+            .then(response => response.text()) // Lấy kết quả dạng chữ từ file Python
+            .then(data => {
+                // Đổ dữ liệu đó vào cái thẻ div ở trên
+                document.getElementById('display-area').innerHTML = data;
+            })
+            .catch(error => {
+                document.getElementById('display-area').innerHTML = "Lỗi khi gọi file Python!";
+                console.error(error);
+            });
+    </script>
+</body>
+</html>

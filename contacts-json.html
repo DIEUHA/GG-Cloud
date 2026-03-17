@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Contact List</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Contact List (By JSON)</h1>
+    <p id="count-info"></p>
+    <table id="contact-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Telephone</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+
+    <script>
+        // Gọi đến file Python JSON
+        fetch('/cgi-bin/contacts-json.py')
+            .then(response => response.json()) // Chuyển chuỗi nhận được thành object JSON
+            .then(result => {
+                if(result.ok) {
+                    document.getElementById('count-info').innerText = "Found " + result.count + " contacts";
+                    
+                    const tbody = document.querySelector('#contact-table tbody');
+                    // Duyệt từng người trong "data" rồi nhét vào bảng
+                    result.data.forEach(item => {
+                        const row = `<tr>
+                            <td>${item.name}</td>
+                            <td>${item.telephone}</td>
+                        </tr>`;
+                        tbody.innerHTML += row;
+                    });
+                }
+            })
+            .catch(error => console.error('Lỗi rồi bà ơi:', error));
+    </script>
+</body>
+</html>
