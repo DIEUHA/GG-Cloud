@@ -24,7 +24,7 @@ table {
 /* 3. Đổi màu Header (theo yêu cầu đề bài) */
 th {
     background-color: #03C75A; /* Màu xanh lá đậm */
-    color: white;              /* Chữ trắng */
+    color: black;              /* Chữ trắng */
     padding: 15px;
     font-size: 1.1em;
     border: 1px solid #219150;
